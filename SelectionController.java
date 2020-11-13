@@ -58,16 +58,35 @@ public class SelectionController {
     @FXML
     void initialize(){
         System.out.println("Enters initialize");
-        meatSelection.add("Chicken");
-        meatSelection.add("Beef");
-        meatSelection.add("Fish");
-        meatBox.setItems(meatSelection);
 
-        extraIngredients.add(Extra.Lettuce);
-        extraIngredients.add(Extra.Mayonnaise);
-        extraIngredients.add(Extra.Tomatoes);
-        extraIngredients.add(Extra.Ketchup);
-        extraListView.setItems(extraIngredients);
+        //Loads Meat Selection ComboBox and sets Chicken as default
+        meatBox.getItems().addAll(
+                "Chicken",
+                "Beef",
+                "Fish"
+        );
+        meatBox.setValue("Chicken");
+
+        extraListView.getItems().addAll(
+                Extra.Lettuce,
+                Extra.Mayonnaise,
+                Extra.Tomatoes,
+                Extra.Ketchup,
+                Extra.Cheese,
+                Extra.Onions,
+                Extra.Tuna,
+                Extra.Oil,
+                Extra.Vinegar,
+                Extra.Avocado
+        );
+
+
+
+//        extraIngredients.add(Extra.Lettuce);
+//        extraIngredients.add(Extra.Mayonnaise);
+//        extraIngredients.add(Extra.Tomatoes);
+//        extraIngredients.add(Extra.Ketchup);
+//        extraListView.setItems(extraIngredients);
     }
 
 
