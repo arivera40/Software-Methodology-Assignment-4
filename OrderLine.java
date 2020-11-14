@@ -5,10 +5,10 @@ public class OrderLine {
     private Sandwich sandwich;
     private double price;
 
-    public OrderLine(Order orderLine){
-        this.lineNumber = orderLine.lineNumber;
-        sandwich = new Chicken();
-        price = 8.99;
+    public OrderLine(Order order, Sandwich sandwich, double price){
+        this.lineNumber = order.lineNumber;
+        this.sandwich = sandwich;
+        this.price = price;
     }
 
     //Idk if this casting is necessary but just in case
@@ -34,6 +34,10 @@ public class OrderLine {
         return sandwich.toString();
     }
 
+    public Sandwich copySandwich(){
+        return sandwich;
+    }
+
     //returns a string of basic ingredients for specific sandwich in OrderLine (Not sure if casting needed but just incase)
     public String getBasicIngredients(){
         if(sandwich instanceof Chicken){
@@ -43,6 +47,12 @@ public class OrderLine {
         }else{
             return ((Fish)sandwich).basicIngredients();
         }
+    }
+
+    public int getLineNumber(){ return lineNumber; }
+
+    public void setLineNumber(int lineNumber){
+        this.lineNumber = lineNumber;
     }
 
     //returns a string of extra ingredients for specific sandwich OrderLine
