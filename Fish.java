@@ -2,6 +2,10 @@ package sample;
 
 public class Fish extends Sandwich {
 
+    public Fish(){
+        super();
+    }
+
     public double price(){
         return 12.99 + (extras.size() * PER_EXTRA);
     }
