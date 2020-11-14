@@ -7,6 +7,10 @@ public abstract class Sandwich implements Customizable {
     static final double PER_EXTRA = 1.99;
     protected ArrayList<Extra> extras;
 
+    public Sandwich(){
+        extras = new ArrayList<Extra>();
+    }
+
     public abstract double price();
 
     //Returns string of basic ingredients unique to each sandwich type
@@ -15,8 +19,12 @@ public abstract class Sandwich implements Customizable {
     //Returns string of extra ingredients (Not unique)
     public String extraIngredients(){
         String toppings = "";
-        for(Extra topping : extras){
-            toppings += topping;
+        for(int i=0; i < extras.size(); i++){
+            if(i == extras.size()-1){
+                toppings += extras.get(i);
+            }else{
+                toppings += extras.get(i) + ", ";
+            }
         }
         return toppings;
     }
