@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -64,6 +65,20 @@
                         </ListView>
                      </children>
                   </HBox>
+                  <HBox prefHeight="33.0" prefWidth="387.0">
+                     <children>
+                        <Button id="addButton" mnemonicParsing="false" onAction="#addIngredients" text="Add">
+                           <HBox.margin>
+                              <Insets left="5.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button id="removeButton" mnemonicParsing="false" onAction="#removeIngredients" text="Remove">
+                           <HBox.margin>
+                              <Insets left="148.0" top="2.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
@@ -91,7 +106,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox fx:id="meatBox" prefHeight="25.0" prefWidth="174.0">
+                  <ComboBox fx:id="meatBox" onAction="#changeSandwichType" prefHeight="25.0" prefWidth="174.0">
                      <VBox.margin>
                         <Insets left="10.0" />
                      </VBox.margin>
@@ -100,31 +115,61 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <ImageView fx:id="sandwichView" fitHeight="156.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="sandwichView" fitHeight="156.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets bottom="5.0" left="45.0" />
                      </VBox.margin>
+                     <image>
+                        <Image url="@images/chicken.jpg" />
+                     </image>
                   </ImageView>
-                  <TextField fx:id="priceField">
-                     <VBox.margin>
-                        <Insets bottom="5.0" right="5.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="orderNumberField">
-                     <VBox.margin>
-                        <Insets right="5.0" />
-                     </VBox.margin>
-                  </TextField>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Price">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" top="2.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="priceField" editable="false">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="171.0" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Serial #">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="5.0" top="2.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="orderNumberField" editable="false">
+                           <HBox.margin>
+                              <Insets left="1.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
                </children>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
             </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="submitButton" mnemonicParsing="false" text="Submit Order">
+                  <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitOrder" text="Submit Order">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="detailsButton" mnemonicParsing="false" text="Order Details">
+                  <Button fx:id="detailsButton" mnemonicParsing="false" onAction="#orderDetails" text="Order Details">
                      <HBox.margin>
                         <Insets left="15.0" />
                      </HBox.margin>
