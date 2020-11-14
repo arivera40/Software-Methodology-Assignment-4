@@ -2,6 +2,10 @@ package sample;
 
 public class Beef extends Sandwich {
 
+    public Beef(){
+        super();
+    }
+
     public double price(){
         return 10.99 + (extras.size() * PER_EXTRA);
     }
