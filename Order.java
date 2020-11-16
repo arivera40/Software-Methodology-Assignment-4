@@ -96,6 +96,8 @@ public class Order implements Customizable {
             }
             lineNum++;
         }
+        //Account for 1 less sandwich in lineNumber
+        lineNumber--;
     }
 
     //Clears OrderLine List
@@ -113,7 +115,7 @@ public class Order implements Customizable {
             String extraIngredients = orderLine.getExtraIngredients();
             if(!extraIngredients.equals("")) output += "Extra Ingredients: " + extraIngredients + "\n";
             output += "Serial #: " + orderLine.getLineNumber() + "\n";
-            output += "Price: $" + orderLine.getPrice() + "\n";
+            output += "Price: $" + formatNumber(orderLine.getPrice()) + "\n";
         }
         output += "--------------------\n";
         output += "Qty: " + orderQuantity() + "\n";
@@ -127,7 +129,7 @@ public class Order implements Customizable {
         output += "Sandwich Selection: " + orderLine.getSandwich() +"\n";
         output += "Basic Ingredients: " + orderLine.getBasicIngredients() + "\n";
         output += "Extra Ingredients: " + orderLine.getExtraIngredients() + "\n";
-        output += "Price: $" + orderLine.getPrice() + "\n";
+        output += "Price: $" + formatNumber(orderLine.getPrice()) + "\n";
         output += "Serial #: " + orderLine.getLineNumber() + "\n";
         return output;
     }
