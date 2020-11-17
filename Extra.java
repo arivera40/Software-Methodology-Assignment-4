@@ -1,5 +1,7 @@
 package sample;
 
+import java.util.ArrayList;
+
 public enum Extra {
     Lettuce,
     Mayonnaise,
@@ -11,4 +13,8 @@ public enum Extra {
     Oil,
     Vinegar,
     Avocado
+    
 }
+
+
+

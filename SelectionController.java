@@ -25,9 +25,9 @@ import java.text.DecimalFormat;
 
 public class SelectionController {
 
-    Image chickenImage = new Image("file:/C:/Users/river/IdeaProjects/OrderSandwichGUI/out/production/OrderSandwichGUI/sample/images/chicken.jpg");
-    Image beefImage = new Image("file:/C:/Users/river/IdeaProjects/OrderSandwichGUI/out/production/OrderSandwichGUI/sample/images/beef.jpg");
-    Image fishImage = new Image("file:/C:/Users/river/IdeaProjects/OrderSandwichGUI/out/production/OrderSandwichGUI/sample/images/fish.jpg");
+  //  Image chickenImage = new Image("file:/C:/Users/river/IdeaProjects/OrderSandwichGUI/out/production/OrderSandwichGUI/sample/images/chicken.jpg");
+  //  Image beefImage = new Image("file:/C:/Users/river/IdeaProjects/OrderSandwichGUI/out/production/OrderSandwichGUI/sample/images/beef.jpg");
+  //  Image fishImage = new Image("file:/C:/Users/river/IdeaProjects/OrderSandwichGUI/out/production/OrderSandwichGUI/sample/images/fish.jpg");
 
     private ObservableList<Extra> extraObservableList = FXCollections.observableArrayList(
             Extra.Lettuce,
@@ -85,7 +85,7 @@ public class SelectionController {
 
     @FXML
     void initialize(){
-        System.out.println("Enters initialize");
+    	System.out.println("Enters initialize");
 
         //Loads Meat Selection ComboBox and sets Chicken as default
         meatBox.getItems().addAll(
@@ -114,6 +114,7 @@ public class SelectionController {
         double priceChange = 1.99 * itemsAdded;
         price += priceChange;
         priceField.setText("$" + formatPrice(price));
+        
         return;
     }
 
@@ -149,7 +150,7 @@ public class SelectionController {
             }
             prevSandwich = "Chicken";
             price += 8.99;
-            sandwichView.setImage(chickenImage);
+        //    sandwichView.setImage(chickenImage);
         }else if(meatBox.getValue().toString().equals("Beef")){
             if(prevSandwich.equals("Chicken")){
                 price -= 8.99;
@@ -158,7 +159,7 @@ public class SelectionController {
             }
             prevSandwich = "Beef";
             price += 10.99;
-            sandwichView.setImage(beefImage);
+        //    sandwichView.setImage(beefImage);
         }else{
             if(prevSandwich.equals("Chicken")){
                 price -= 8.99;
@@ -167,7 +168,7 @@ public class SelectionController {
             }
             prevSandwich = "Fish";
             price += 12.99;
-            sandwichView.setImage(fishImage);
+      //      sandwichView.setImage(fishImage);
         }
         priceField.setText("$" + formatPrice(price));
     }

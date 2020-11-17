@@ -18,9 +18,12 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -112,12 +115,48 @@ public class OrderDetailsController {
     }
 
     @FXML
-    void selection(ActionEvent event){
+    void selection(ActionEvent event)throws Exception{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("Selection.fxml"));
+        Parent orderDetailsParent = loader.load();
+        Scene orderDetailsScene = new Scene(orderDetailsParent);
+
+        OrderDetailsController orderDetails = loader.getController();
+        orderDetails.start(orders);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(orderDetailsScene);
+        window.show();
 
     }
 
     @FXML
     void confirmOrder(ActionEvent event){
+         FileChooser chooser = new FileChooser();
+         chooser.setTitle("Specify Text File to Export to");
+         chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                 new FileChooser.ExtensionFilter("All Files", "*.*"));
+         Stage stage = new Stage();
+
+         try{
+             File outputFile = chooser.showSaveDialog(stage);
+             if(!outputFile.getName().endsWith(".txt")){
+                 return;
+             }
+             FileWriter writer = new FileWriter(outputFile);
+            String status = orders.printOrder();
+             if(status.equals("Database is empty.")){
+                orders.printOrder();
+             }else{
+                 writer.write(status);
+             }
+             writer.close();
+         }catch(IOException e){
+             return;
+         }catch(NullPointerException e){
+        	 return;
+         }
 
     }
 }
