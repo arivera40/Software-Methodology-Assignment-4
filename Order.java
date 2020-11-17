@@ -115,7 +115,7 @@ public class Order implements Customizable {
             String extraIngredients = orderLine.getExtraIngredients();
             if(!extraIngredients.equals("")) output += "Extra Ingredients: " + extraIngredients + "\n";
             output += "Serial #: " + orderLine.getLineNumber() + "\n";
-            output += "Price: $" + formatNumber(orderLine.getPrice()) + "\n";
+            output += "Price: $" + formatNumber(orderLine.getPrice()) + "\n\n";
         }
         output += "--------------------\n";
         output += "Qty: " + orderQuantity() + "\n";
@@ -128,7 +128,8 @@ public class Order implements Customizable {
         OrderLine orderLine = orderlines.get(index);
         output += "Sandwich Selection: " + orderLine.getSandwich() +"\n";
         output += "Basic Ingredients: " + orderLine.getBasicIngredients() + "\n";
-        output += "Extra Ingredients: " + orderLine.getExtraIngredients() + "\n";
+        String extraIngredients = orderLine.getExtraIngredients();
+        if(!extraIngredients.equals("")) output += "Extra Ingredients: " + extraIngredients + "\n";
         output += "Price: $" + formatNumber(orderLine.getPrice()) + "\n";
         output += "Serial #: " + orderLine.getLineNumber() + "\n";
         return output;
@@ -157,7 +158,7 @@ public class Order implements Customizable {
 
     //Gives you the total number of order lines
     public int orderQuantity(){
-        return orderlines.size();   //May be more efficient to return lineNumber
+        return orderlines.size();
     }
 
     public double orderLinePrice(int lineNumber){
@@ -167,6 +168,11 @@ public class Order implements Customizable {
             }
         }
         return 0;
+    }
+
+    //Used only for the purpose of switching from OrderDetails to Selection Controller
+    public void updateLineNumber(int lineNumber){
+        this.lineNumber = lineNumber;
     }
 
 }
