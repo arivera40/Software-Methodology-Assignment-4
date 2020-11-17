@@ -25,9 +25,9 @@ import java.text.DecimalFormat;
 
 public class SelectionController {
 
-    Image chickenImage = new Image("file:/C:/Users/river/IdeaProjects/OrderSandwichGUI/out/production/OrderSandwichGUI/sample/images/chicken.jpg");
-    Image beefImage = new Image("file:/C:/Users/river/IdeaProjects/OrderSandwichGUI/out/production/OrderSandwichGUI/sample/images/beef.jpg");
-    Image fishImage = new Image("file:/C:/Users/river/IdeaProjects/OrderSandwichGUI/out/production/OrderSandwichGUI/sample/images/fish.jpg");
+    Image chickenImage = new Image("/sample/images/chicken.jpg");
+    Image beefImage = new Image("/sample/images/beef.jpg");
+    Image fishImage = new Image("/sample/images/fish.jpg");
 
     private ObservableList<Extra> extraObservableList = FXCollections.observableArrayList(
             Extra.Lettuce,
@@ -81,12 +81,17 @@ public class SelectionController {
 
     private int orderNumber = 1;
 
-    protected static Order orders = new Order();
+    private Order orders;
+
+    public void start(Order orders){
+        this.orders = orders;
+        orders.updateLineNumber(orders.getSize() + 1);
+        orderNumber = orders.getLineNumber();
+        orderNumberField.setText("" + orderNumber);
+    }
 
     @FXML
     void initialize(){
-        System.out.println("Enters initialize");
-
         //Loads Meat Selection ComboBox and sets Chicken as default
         meatBox.getItems().addAll(
                 "Chicken",
@@ -94,6 +99,8 @@ public class SelectionController {
                 "Fish"
         );
         meatBox.setValue("Chicken");
+
+        orders = new Order();
 
         //Sets default price and order number fields
         priceField.setText("$" + formatPrice(price));
@@ -202,7 +209,6 @@ public class SelectionController {
         }
         orderNumber = orders.getLineNumber();
         orderNumberField.setText("" + orderNumber);
-        System.out.println(orders.printOrder());
         defaultOrderSelection();
     }
 
